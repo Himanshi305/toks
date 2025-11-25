@@ -1,6 +1,6 @@
 import userModel from '../models/user.model.js';
 
-
+// creating a new user
 export const createUser = async ({
     email,password
 })=>{
@@ -15,4 +15,12 @@ export const createUser = async ({
         password: hashedPassword
     });
     return user;
+}
+//those who havn't logged in
+export const getAllUsers = async ({userId}) => {
+    const users = await userModel.find({
+        _id: { $ne: userId },
+        }
+    );
+    return users;
 }

@@ -9,11 +9,11 @@ const projectSchema = new mongoose.Schema({
     lowercase: true,
   },
 
-  users:{
+  users:[{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
     required: true, 
-  }
+  }]
 });
 
 
