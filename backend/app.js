@@ -5,6 +5,12 @@ import userRoutes from './routes/user.routes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import projectRoutes from './routes/project.routes.js';
+import aiRoutes from './routes/ai.routes.js';
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 connect();
 
@@ -24,7 +30,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/user', userRoutes);
 app.use('/api/projects', projectRoutes);
-
+app.use('/api/ai', aiRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

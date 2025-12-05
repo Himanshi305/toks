@@ -2,8 +2,13 @@ import {Router} from 'express';
 import * as userController from '../controllers/user.controller.js';
 import { body } from 'express-validator';
 import * as authMiddleware from '../middleware/auth.middleware.js'; 
+import {uploadAvatar} from "../middleware/uploadAvatar.js"
+import { updateAvatarController } from '../controllers/user.controller.js';
+import { authUser } from '../middleware/auth.middleware.js';
 
 const router = Router();
+//avatar upload route page
+router.post("/avatar", authUser, uploadAvatar.single("avatar"), updateAvatarController);
 //register route page
 router.post('/register',
     body('email').isEmail().withMessage('Invalid email'),

@@ -2,6 +2,7 @@ import userModel from "../models/user.model.js";
 import * as userService from "../services/user.service.js";
 import { validationResult } from "express-validator";
 import redisClient from "../services/redis.service.js";
+import { authUser } from "../middleware/auth.middleware.js";
 
 //for registration
 export const createUserController = async (req, res) => {
@@ -92,3 +93,17 @@ try {
   }
 
 }
+
+export const updateAvatarController = async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ message: "No image uploaded" });
+
+    const avatarURL = `/uploads/avatars/${req.file.filename}`;
+
+    await User.findByIdAndUpdate(req.user._id, { avatar: avatarURL });
+
+    res.json({ message: "Avatar updated", avatar: avatarURL });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
