@@ -172,6 +172,7 @@ const project = () => {
         <div className="p-4 text-white">
           <h1 className="text-2xl font-bold">{project.name}</h1>
           <p className="mt-2">{project.description}</p>
+          <p>himanshi</p>
         </div>
       </section>
 
