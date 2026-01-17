@@ -1,12 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "../../../config/axios";
+import { UserContext } from "../../../context/user_context";
 import { useParams } from "next/navigation";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { AiOutlineSend } from "react-icons/ai";
 import { MdCloseFullscreen } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
+import { initializeSocket, receiveMessage, sendMessage } from "../../../config/socket";
 
 const project = () => {
   const { id } = useParams();
@@ -16,6 +18,8 @@ const project = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [message, setMessage] = useState("");
+  const { user } = useContext(UserContext);
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -61,8 +65,24 @@ const project = () => {
       });
   }
 
+  function send() {
+
+    sendMessage("project-message", { message,
+      sender: user._id,
+     });
+    setMessage("");
+  }
+
   useEffect(() => {
     if (!id) return;
+    
+
+    initializeSocket(id);
+
+
+    receiveMessage("project-message", (data) => {
+      console.log("Received project message:", data);
+    });
 
     axios
       .get("/user/all")
@@ -72,11 +92,7 @@ const project = () => {
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
-  }, []);
-
-  useEffect(() => {
-    if (!id) return;
-
+      
     axios
       .get(`/projects/get-project/${id}`)
       .then((response) => {
@@ -134,11 +150,15 @@ const project = () => {
         </div>
         <div className="input-field w-full flex p-3 gap-2 items-center border-t border-gray-700">
           <input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
             type="text"
             placeholder="Type a message..."
             className="bg-gray-700 grow focus:outline-none text-sm text-gray-300 p-2 px-4 border border-gray-600 rounded-md"
           />
-          <button className="p-2 border border-gray-600 rounded-md text-gray-400 hover:text-white">
+          <button 
+          onClick={send}
+          className="p-2 border border-gray-600 rounded-md text-gray-400 hover:text-white">
             <AiOutlineSend size={20} />
           </button>
         </div>
@@ -157,14 +177,15 @@ const project = () => {
             </button>
           </header>
           <div className="users flex flex-col gap-2 p-4">
-            {project.users && project.users.map(user => (
-              <div key={user._id} className="user flex gap-2 items-center">
-                <div className="aspect-square p-2 bg-gray-800 rounded-full w-fit h-fit">
-                  <FaUserCircle />
+            {project.users &&
+              project.users.map((user) => (
+                <div key={user._id} className="user flex gap-2 items-center">
+                  <div className="aspect-square p-2 bg-gray-800 rounded-full w-fit h-fit">
+                    <FaUserCircle />
+                  </div>
+                  <h1>{user.email}</h1>
                 </div>
-                <h1>{user.email}</h1>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
