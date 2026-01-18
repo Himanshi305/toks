@@ -9,6 +9,7 @@ import { MdCloseFullscreen } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
 import { initializeSocket, receiveMessage, sendMessage } from "../../../config/socket";
+import UserAuth from "../../../auth/UserAuth"
 
 const project = () => {
   const { id } = useParams();
@@ -69,18 +70,16 @@ const project = () => {
 
     sendMessage("project-message", { message,
       sender: user._id,
-     });
+    });
+    console.log("Sent message:", message)
     setMessage("");
   }
 
   useEffect(() => {
-    if (!id) return;
-    
-
+    if (!id) return;    
     initializeSocket(id);
 
-
-    receiveMessage("project-message", (data) => {
+    receiveMessage("project-message", (data) => { 
       console.log("Received project message:", data);
     });
 
@@ -112,6 +111,7 @@ const project = () => {
   }
 
   return (
+    <UserAuth>
     <div className="h-screen w-screen flex">
       <section className="left h-screen w-1/4 bg-gray-800 flex flex-col justify-between relative">
         <header className="head w-full justify-between p-2 px-4 flex items-center h-14 border-b border-gray-700 text-xl font-mono">
@@ -244,6 +244,7 @@ const project = () => {
         </div>
       )}
     </div>
+    </UserAuth>
   );
 };
 
