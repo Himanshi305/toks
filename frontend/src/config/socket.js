@@ -23,3 +23,9 @@ export const receiveMessage = (eventName, callback) => {
 export const sendMessage = (eventName, data) => {
   socketInstance.emit(eventName, data);
 };
+
+export const offMessage = (eventName, callback) => {
+  if (socketInstance) {
+    socketInstance.off(eventName, callback);
+  }
+};

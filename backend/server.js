@@ -89,7 +89,10 @@ io.on("connection", (socket) => {
 
     console.log("project-message received:", data);
     // Broadcast to other sockets in the project room (exclude sender).
-    socket.broadcast.to(socket.projectId).emit("project-message", {});
+    socket.broadcast.to(socket.projectId).emit("project-message", {
+      message: data.message,
+      senderName: data.senderName || "Unknown",
+    });
   });
 
   socket.on("disconnect", () => {
