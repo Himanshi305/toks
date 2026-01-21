@@ -15,6 +15,7 @@ import {
   sendMessage,
 } from "../../../config/socket";
 import UserAuth from "../../../auth/UserAuth";
+import Markdown from 'markdown-to-jsx';
 
 const project = () => {
   const { id } = useParams();

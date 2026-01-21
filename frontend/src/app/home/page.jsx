@@ -56,11 +56,9 @@ const home = () => {
             state: { proj }
           })} className="project-item p-4 m-4 border border-gray-600 rounded-lg shadow-md bg-white/5 backdrop-blur-md">
             {proj.name}
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-gray-400 items-center mt-2">
               <IoPersonCircleOutline />
-              <span className="text-sm text-gray-400">ID: {proj.id}</span>
-              <span className="text-sm text-gray-400">| Created At: {new Date(proj.createdAt).toLocaleDateString()}</span>
-              {proj.users.length}
+              <div className="text-sm text-gray-400">Users: {proj.users.length}</div>
             </div>
           </div>
         ))}
