@@ -1,5 +1,4 @@
 import { GoogleGenAI } from "@google/genai";
-import { response } from "express";
 
 const ai = new GoogleGenAI({apiKey: process.env.GOOGLE_AI_KEY});
 

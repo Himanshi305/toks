@@ -73,7 +73,9 @@ const project = () => {
       });
   }
 
-  function send() {
+  async function send() {
+    if (!message.trim()) return;
+
     const payload = {
       message,
       senderName: user.email,
@@ -126,7 +128,7 @@ const project = () => {
   return (
     <UserAuth>
       <div className="h-screen w-screen flex">
-        <section className="left h-screen w-1/4 bg-gray-800 flex flex-col justify-between relative">
+        <section className="left h-screen w-1/3 bg-gray-800 flex flex-col justify-between relative">
           <header className="head w-full justify-between p-2 px-4 flex items-center h-14 border-b border-gray-700 text-xl font-mono">
             <button
               onClick={openModal}
@@ -157,7 +159,9 @@ const project = () => {
                   }`}
                 >
                   <small>{msg.senderName}</small>
-                  <p>{msg.message}</p>
+                  {msg.isAI ? (
+                    <Markdown>{msg.message}</Markdown>
+                  ) : <p>{msg.message}</p>}
                 </div>
               ))}
             </div>
