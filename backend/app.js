@@ -17,8 +17,11 @@ connect();
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3001', // Your frontend URL
+  origin: ['http://localhost:3001',
+    'https://toks-1.onrender.com'
+  ], // Your frontend URL
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'], // This is the missing piece
 };
 
@@ -27,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use('/api/user', userRoutes);
 app.use('/api/projects', projectRoutes);
