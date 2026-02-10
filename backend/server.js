@@ -10,11 +10,15 @@ import e from "express";
 
 const port = process.env.PORT || 3000;
 
+console.log("🔥 SERVER.JS RUNNING");
+
+
 const server = http.createServer(app);
 const io = new Server(server,
   {
     cors: {
-      origin: "*"
+      origin: ["https://toks-d7ge.onrender.com", "http://localhost:3001"],
+    credentials: true
     }
   }
 );

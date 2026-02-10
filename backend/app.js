@@ -9,6 +9,8 @@ import aiRoutes from './routes/ai.routes.js';
 import path from "path";
 import { fileURLToPath } from "url";
 
+console.log("🔥 APP.JS CORS LOADED");
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -30,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.options(/.*/, cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use('/api/user', userRoutes);
 app.use('/api/projects', projectRoutes);
