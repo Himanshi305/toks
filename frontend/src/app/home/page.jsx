@@ -31,7 +31,7 @@ const home = () => {
   }
 
   useEffect(() => {
-    axios.get('/api//projects/all').then((response) => {
+    axios.get('/api/projects/all').then((response) => {
       setProject(response.data.projects);
     }).catch((error) => {
       console.error("Error fetching projects:", error);
