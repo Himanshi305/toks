@@ -96,7 +96,7 @@ const project = () => {
     receiveMessage("project-message", handler);
 
     axios
-      .get("/api/user/all")
+      .get("/user/all")
       .then((response) => {
         setUsers(response.data.users);
       })
@@ -105,7 +105,7 @@ const project = () => {
       });
 
     axios
-      .get(`/api/projects/get-project/${id}`)
+      .get(`/projects/get-project/${id}`)
       .then((response) => {
         setProject(response.data.project);
       })
