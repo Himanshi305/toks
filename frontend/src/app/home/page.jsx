@@ -20,7 +20,7 @@ const home = () => {
     console.log({ projectName });
 
     axios
-      .post("/projects/create", { name: projectName })
+      .post("/api/projects/create", { name: projectName })
       .then((response) => {
         console.log("Project created successfully:", response.data);
         setisModalOpen(false);
@@ -31,7 +31,7 @@ const home = () => {
   }
 
   useEffect(() => {
-    axios.get('/projects/all').then((response) => {
+    axios.get('/api//projects/all').then((response) => {
       setProject(response.data.projects);
     }).catch((error) => {
       console.error("Error fetching projects:", error);
