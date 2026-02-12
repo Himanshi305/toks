@@ -14,7 +14,7 @@ const register = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    axios.post('/register', {email, password})
+    axios.post('/api/register', {email, password})
       .then(response => {
         console.log('Register successful:');
         navigate.push('/');
