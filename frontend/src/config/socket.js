@@ -5,7 +5,7 @@ let socketInstance = null;
 
 export const initializeSocket = (projectId) => {
 
-  socketInstance = io("https://toks-2.onrender.com", {
+  socketInstance = io(process.env.NEXT_PUBLIC_API_URL, {
     auth: {
       token: localStorage.getItem("token")
     },
