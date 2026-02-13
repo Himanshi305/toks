@@ -5,7 +5,7 @@ let socketInstance = null;
 
 export const initializeSocket = (projectId) => {
 
-  socketInstance = io("http://localhost:3000", {
+  socketInstance = io("http://localhost:3000","https://toks-2.onrender.com", {
     auth: {
       token: localStorage.getItem("token")
     },
