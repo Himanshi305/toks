@@ -1,17 +1,18 @@
-import project from "@/app/project/[id]/page";
+"use client";
 import { io } from "socket.io-client";
 
 let socketInstance = null;
 
 export const initializeSocket = (projectId) => {
 
-  socketInstance = io("http://localhost:3000","https://toks-2.onrender.com", {
+  socketInstance = io("https://toks-2.onrender.com", {
     auth: {
       token: localStorage.getItem("token")
     },
     query: {
       projectId: projectId,
     },
+    transports: ['websocket'], // Use WebSocket transport
   }); // Replace with your server URL
   return socketInstance;
 };
