@@ -60,7 +60,7 @@ const project = () => {
 
   function addUserToProject() {
     axios
-      .put(`/projects/add-user`, {
+      .put(`/api/projects/add-user`, {
         projectId: id,
         users: selectedUsers.map((user) => user._id),
       })

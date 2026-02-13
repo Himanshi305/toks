@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Project from "./models/project.model.js"; // adjust path if needed
 
 // 🔧 replace with your actual MongoDB connection string
-const MONGO_URI = "mongodb://127.0.0.1:27017/toks"; 
+const MONGO_URI = MONGO_URI ; 
 
 const migrateUsersField = async () => {
   try {
