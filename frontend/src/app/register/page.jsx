@@ -17,7 +17,7 @@ const register = () => {
     axios.post('/api/user/register', {email, password})
       .then(response => {
         console.log('Register successful:');
-        navigate.push('/');
+        navigate.push('/login');
       })
       .catch(error => {
         console.error('There was an error registering!', error);
