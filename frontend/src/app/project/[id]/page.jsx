@@ -211,19 +211,18 @@ const project = () => {
         <section className="right h-screen w-3/4 bg-gray-700">
           <div className="p-4 text-white">
             <h1 className="text-2xl font-bold">{project.name}</h1>
-            <p className="mt-2">{project.description}</p>
-            <p>himanshi</p>
+            <p className="mt-2">{project.description}</p>            
           </div>
         </section>
 
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
             <div className="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md mx-4 sm:mx-0">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl text-white">Select a User</h2>
                 <button
                   onClick={closeModal}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white "
                 >
                   <MdCloseFullscreen size={24} />
                 </button>
@@ -233,7 +232,7 @@ const project = () => {
                   <div
                     key={user._id}
                     onClick={() => handleUserSelect(user)}
-                    className={`flex items-center gap-4 p-4 bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-600 border-2 ${
+                    className={`flex flex-col items-center gap-2 p-4 bg-gray-700 ml-auto rounded-lg cursor-pointer hover:bg-gray-600 border-2 ${
                       selectedUsers.find(
                         (selectedUser) => selectedUser._id === user._id,
                       )

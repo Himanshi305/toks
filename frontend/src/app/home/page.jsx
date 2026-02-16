@@ -6,7 +6,7 @@ import Navbar from "../components/nav";
 import { MdGroupAdd } from "react-icons/md";
 import axios from "../../config/axios";
 import { IoPersonCircleOutline } from "react-icons/io5";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const home = () => {
   const { user } = useContext(UserContext);
