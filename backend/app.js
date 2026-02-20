@@ -20,7 +20,7 @@ const app = express();
 
 const corsOptions = {
   origin: ['http://localhost:3001',
-    'https://toks-d7ge.onrender.com'
+    'https://toks-thox.vercel.app'
   ], // Your frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

@@ -17,7 +17,7 @@ const server = http.createServer(app);
 const io = new Server(server,
   {
     cors: {
-      origin: ["https://toks-d7ge.onrender.com", "http://localhost:3001"],
+      origin: ["https://toks-thox.vercel.app", "http://localhost:3001"],
     credentials: true
     }
   }
