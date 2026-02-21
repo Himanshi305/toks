@@ -29,8 +29,8 @@ const register = () => {
       <Navbar />
       <div className="relative grow flex justify-center ">
       <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center border-purple-400 border-3 p-10 m-10 rounded-lg shadow-lg bg-white/5 backdrop-blur-md">
-        <h2 className="text-3xl mb-1 text-white font-mono">Register Your</h2>
-        <h1 className="text-4xl mb-6 text-purple-500">Account !</h1>
+        <h2 className="md:text-3xl text-2xl md:mb-1 text-white font-mono">Register Your</h2>
+        <h1 className="md:text-4xl text-3xl mb-6 text-purple-500">Account !</h1>
         <input
           type="email"
           placeholder="Email"
@@ -50,7 +50,7 @@ const register = () => {
         </button>
         <p className="mt-4 text-white">
           Already have an account{' '}
-          <Link href="/login" className="text-gray-500 underline">
+          <Link href="/login" className="text-blue-900 underline hover:text-blue-700 active:text-black">
             Login here
           </Link>
         </p>
