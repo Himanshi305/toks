@@ -20,10 +20,10 @@ const Navbar = () => {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-800/90 md:hidden flex flex-col items-center gap-4 p-4">
-          <Link href="/login" className="font-mono text-white">Login</Link>
-          <Link href="/register" className="font-mono text-white">Register</Link>
-          <Link href="/" className="font-mono text-white">Home</Link>
+        <div className="absolute top-16 left-10 right-10 md:hidden flex flex-col items-center gap-4 p-10 border border-purple-400 rounded-lg shadow-lg bg-white/5 backdrop-blur-md">
+          <Link href="/login" className="font-mono text-white border border-white px-13">Login</Link>
+          <Link href="/register" className="font-mono text-white border border-white px-10">Register</Link>
+          <Link href="/" className="font-mono text-white border border-white px-15">Home</Link>
         </div>
       )}
     </div>
