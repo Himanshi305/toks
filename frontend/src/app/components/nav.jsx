@@ -7,7 +7,7 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='border border-purple-400 p-2 m-2 rounded-3xl flex items-center justify-between'>
+    <div className='relative z-10 border border-purple-400 p-2 m-2 rounded-3xl flex items-center justify-between'>
       <div className="mr-4 font-bold text-purple-500">TOKS</div>
       <div className="hidden md:flex gap-8 text-white justify-center">
         <Link href="/dashboard" className="font-mono">Dashboard</Link>

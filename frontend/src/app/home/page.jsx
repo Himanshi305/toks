@@ -44,7 +44,7 @@ const home = () => {
       <div className="projects border border-gray-600 p-5 m-10 rounded-lg shadow-lg bg-white/5 backdrop-blur-md">
         <button
           onClick={() => setisModalOpen(true)}
-          className="project flex gap-4"
+          className="project flex gap-4 text-white hover:text-purple-400 items-center p-2"
         >
           <MdGroupAdd />
           Create new room
@@ -54,7 +54,7 @@ const home = () => {
         {project.map((proj) => (
           <div key={proj._id} onClick={() => navigate.push(`/project/${proj._id}`,{
             state: { proj }
-          })} className="project-item p-4 m-4 border border-gray-600 rounded-lg shadow-md bg-white/5 backdrop-blur-md">
+          })} className="project-item text-white p-4 m-4 border border-gray-600 rounded-lg shadow-md bg-white/5 backdrop-blur-md">
             {proj.name}
             <div className="flex gap-2 text-gray-400 items-center mt-2">
               <IoPersonCircleOutline />
