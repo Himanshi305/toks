@@ -34,7 +34,7 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className="flex justify-center items-center h-screen">
-        <div className="max-w-2xl w-full rounded-lg shadow-lg bg-gray-900/80 backdrop-blur-md flex">
+        <div className="md:max-w-xl md:w-full rounded-lg shadow-lg bg-white/5 backdrop-blur-md border border-purple-400 flex">
           {/* Left side for image */}
           <div className="w-1/3 p-6 flex justify-center items-center">
             <input
@@ -45,7 +45,7 @@ const Dashboard = () => {
               accept="image/*"
             />
             <div
-              className="w-40 h-40 cursor-pointer flex justify-center items-center border-4 border-gray-700 rounded-full overflow-hidden"
+              className="w-40 h-40 cursor-pointer flex justify-center items-center border-4 border-purple-400 rounded-full overflow-hidden"
               onClick={handleIconClick}
             >
               {image ? (
@@ -68,7 +68,7 @@ const Dashboard = () => {
                   type="text"
                   value={tempUsername}
                   onChange={(e) => setTempUsername(e.target.value)}
-                  className="font-semibold text-xl mb-4 text-white bg-transparent border-b-2 border-gray-500 focus:outline-none w-full"
+                  className="font-semibold text-xl mb-4 text-white bg-transparent border-b-2 border-purple-400 focus:outline-none w-full"
                     placeholder="Username"
                 />
               ) : (
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 <textarea
                   value={tempBio}
                   onChange={(e) => setTempBio(e.target.value)}
-                  className="text-base text-white bg-transparent border-b-2 border-gray-500 focus:outline-none w-full"
+                  className="text-base text-white bg-transparent border-b-2 border-purple-400 focus:outline-none w-full"
                   placeholder="Bio"
                   rows="3"
                 />
@@ -91,7 +91,7 @@ const Dashboard = () => {
             <div className="flex justify-end">
               <button
                 onClick={handleEdit}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
+                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded"
               >
                 {isEditing ? "Save" : "Edit"}
               </button>

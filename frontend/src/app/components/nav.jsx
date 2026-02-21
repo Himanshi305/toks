@@ -20,7 +20,7 @@ const Nav = () => {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-800/90 md:hidden flex flex-col items-center gap-4 p-4">
+        <div className="absolute top-16 left-5 right-5 md:hidden flex flex-col items-center gap-4 p-10 border border-purple-400 rounded-lg shadow-lg bg-white/5 backdrop-blur-md">
           <Link href="/dashboard" className="font-mono text-white">Dashboard</Link>
           <Link href="/home" className="font-mono text-white">Home</Link>
           <Link href="/logout" className="font-mono text-red-500">Logout</Link>
