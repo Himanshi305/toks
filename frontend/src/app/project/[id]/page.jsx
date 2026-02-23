@@ -15,7 +15,7 @@ import {
   sendMessage,
 } from "../../../config/socket";
 import UserAuth from "../../../auth/UserAuth";
-import Markdown from 'markdown-to-jsx';
+import Markdown from 'markdown-to-jsx'
 
 const project = () => {
   const { id } = useParams();
@@ -27,6 +27,7 @@ const project = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [aiResponse, setAiResponse] = useState("");
   const { user } = useContext(UserContext);
 
   const togglePanel = () => {
@@ -91,6 +92,9 @@ const project = () => {
 
     const handler = (data) => {
       setMessages((prev) => [...prev, data]);
+      if (data.senderName === "AI Assistant") {
+        setAiResponse(data.message);
+      }
     };
 
     receiveMessage("project-message", handler);
@@ -147,21 +151,30 @@ const project = () => {
               <HiOutlineUserGroup size={24} />
             </button>
           </header>
-          <div className="conversation-area grow flex flex-col overflow-y-auto">
+          <div className="conversation-area grow flex flex-col overflow-y-auto custom-scrollbar">
             <div className="message-box grow flex flex-col gap-1 p-2">
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className={`flex flex-col p-2 rounded-md text-sm max-w-[75%] ${
+                  className={`flex flex-col p-3 rounded-xl text-sm max-w-[80%] ${
                     msg.senderName === user.email
                       ? "bg-purple-600 text-white ml-auto items-end"
-                      : "bg-gray-700 text-gray-300"
+                      : msg.isAI
+                      ? "bg-linear-to-br from-purple-900 to-black border border-purple-500 text-white"
+                      : "bg-gray-800 text-gray-300"
                   }`}
                 >
-                  <small>{msg.senderName}</small>
-                  {msg.isAI ? (
-                    <Markdown>{msg.message}</Markdown>
-                  ) : <p>{msg.message}</p>}
+                  <small className="opacity-60 text-xs">
+                    {msg.senderName}
+                  </small>
+
+                  {msg.senderName === "AI Assistant" ? (
+                    <div className="prose prose-invert max-w-none mt-2 text-sm overflow-x-auto custom-scrollbar">
+                      <Markdown>{msg.message}</Markdown>
+                    </div>
+                  ) : (
+                    <p className="mt-1">{msg.message}</p>
+                  )}
                 </div>
               ))}
             </div>
@@ -208,10 +221,9 @@ const project = () => {
             </div>
           </div>
         </section>
-        <section className="right h-screen w-3/4 bg-black hidden md:block">
-          <div className="p-4 text-white">
-            <h1 className="text-2xl font-bold">{project.name}</h1>
-            <p className="mt-2">{project.description}</p>            
+        <section className="right h-screen w-3/4 bg-black hidden md:block overflow-scroll custom-scrollbar">
+          <div className="p-4 text-white prose prose-invert max-w-none">
+            <Markdown>{aiResponse}</Markdown>
           </div>
         </section>
 

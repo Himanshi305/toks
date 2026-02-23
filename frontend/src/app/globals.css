@@ -64,21 +64,23 @@
 
 @tailwind utilities;
 
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #2d3748;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #4a5568;
-  border-radius: 4px;
+  background: #4c1d95; /* A shade of purple */
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #718096;
+  background: #5b21b6; /* A slightly lighter purple */
 }
 
 :root {
