@@ -2,12 +2,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "../../../config/axios";
 import { UserContext } from "../../../context/user_context";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { AiOutlineSend } from "react-icons/ai";
 import { MdCloseFullscreen } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
+import { IoArrowBack } from "react-icons/io5";
 import {
   initializeSocket,
   offMessage,
@@ -19,6 +20,7 @@ import Markdown from 'markdown-to-jsx'
 
 const project = () => {
   const { id } = useParams();
+  const router = useRouter();
   const [project, setProject] = useState(null);
   const [error, setError] = useState(null);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -134,16 +136,24 @@ const project = () => {
       <div className="h-screen w-screen flex bg-black text-white">
         <section className="left h-screen w-full md:w-1/3 bg-black backdrop-blur-md border-r border-purple-400 flex flex-col justify-between relative">
           <header className="head w-full justify-between p-2 px-4 flex items-center h-14 border-b border-purple-400 text-xl font-mono">
-            <button
-              onClick={openModal}
-              className="flex gap-1 items-center p-1 text-purple-400 hover:text-white justify-start"
-            >
-              <LuUserPlus
-                size={24}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => router.back()}
                 className="p-1 text-purple-400 hover:text-white"
-              />
-              <p className="text-sm">Add User</p>
-            </button>
+              >
+                <IoArrowBack size={24} />
+              </button>
+              <button
+                onClick={openModal}
+                className="flex gap-1 items-center p-1 text-purple-400 hover:text-white justify-start"
+              >
+                <LuUserPlus
+                  size={24}
+                  className="p-1 text-purple-400 hover:text-white"
+                />
+                <p className="text-sm">Add User</p>
+              </button>
+            </div>
             <button
               onClick={togglePanel}
               className="p-1 text-purple-400 hover:text-white"
